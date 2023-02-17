@@ -5,6 +5,7 @@ binom_dist = np.random.binomial(1, .5, 1000)
 
 st.write('Hello World, Esther is Medusa, very evil!!!')
 st.write('vetg')
+st.write('vetg')
 st.write(np.mean(binom_dist))
 
 list_of_means = []
