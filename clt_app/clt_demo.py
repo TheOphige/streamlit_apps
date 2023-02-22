@@ -1,7 +1,10 @@
 import streamlit as st
 import numpy as np
 import matplotlib.pyplot as plt
-binom_dist = np.random.binomial(1, .5, 1000)
+
+perc_heads= st.number_input(label='Chance of Coins Landing on Heads', min_value=0.0, max_value=1.0, value=.5)
+
+binom_dist = np.random.binomial(1, perc_heads, 1000)
 
 st.write('Hello World, Esther is Medusa, very evil!!!')
 st.write('vetg')
