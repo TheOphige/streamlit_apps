@@ -16,7 +16,7 @@ selected_y_var = st.selectbox('What about the y?',
 
 #import our data
 penguins_df = pd.read_csv('penguins.csv')
-st.write(penguins_df.head())
+#st.write(penguins_df.head())
 
 penguins_df= penguins_df[penguins_df['species'] == selected_species]
 
