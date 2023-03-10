@@ -50,9 +50,14 @@ new_prediction = rfc.predict([[bill_length, bill_depth, flipper_length,
 #mapping prediction to its species
 prediction_species = unique_penguin_mapping[new_prediction][0]
 
+st.subheader("Predicting Your Penguin's Species:")
 st.write('The user inputs are {}'.format([island, sex, bill_length, 
                                           bill_depth, flipper_length, 
                                           body_mass]))
 
 st.write('We predict your penguin is of the {} species'.format(
     prediction_species))
+st.write('We used a machine learning (Random Forest) model to '
+         'predict the species, the features used in this prediction'
+         'are rankedby relative importance below.')
+st.image('feature_importance.png')

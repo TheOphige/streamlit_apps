@@ -56,6 +56,14 @@ else:
              'it has a score of {} ! Use the inputs below to'
               ' try out the model.'.format(score))
     
+    fig, ax = plt.subplots()
+    ax = sns.barplot(x= rfc.feature_importances_, y= features.columns)
+    plt.title('Which features are the most important for species prediction?')
+    plt.xlabel('Importance')
+    plt.ylabel('Feature')
+    plt.tight_layout()
+    fig.savefig('feature_importance.png')
+    
 # Receiving user input
 with st.form('user_inputs'):
     island = st.selectbox('Penguin Island', options= ['Biscoe', 'Dream', 
@@ -90,10 +98,16 @@ new_prediction = rfc.predict([[bill_length, bill_depth, flipper_length,
 #mapping prediction to its species
 prediction_species = unique_penguin_mapping[new_prediction][0]
 
+
+st.subheader("Predicting Your Penguin's Species:")
 st.write('The user inputs are {}'.format([island, sex, bill_length, 
                                           bill_depth, flipper_length, 
                                           body_mass]))
 
 st.write('We predict your penguin is of the {} species'.format(
     prediction_species))
+st.write('We used a machine learning (Random Forest) model to '
+         'predict the species, the features used in this prediction'
+         'are rankedby relative importance below.')
+st.image('feature_importance.png')
 
