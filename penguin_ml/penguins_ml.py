@@ -16,13 +16,6 @@ features = penguin_df[['island', 'bill_length_mm', 'bill_depth_mm',
 features= pd.get_dummies(features)
 output, uniques = pd.factorize(output)
 
-# display data (outputs and features)
-print('Here are our output variables')
-print(output.head())
-
-print('Here are our feature variables')
-print(features.head())
-
 # split data into training and test set
 x_train, x_test, y_train, y_test = train_test_split(features, 
 output, test_size=0.8)
