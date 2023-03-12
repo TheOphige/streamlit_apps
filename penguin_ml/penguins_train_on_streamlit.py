@@ -135,7 +135,7 @@ def plot_features(feature_name, user_input_feature):
     fig, ax = plt.subplots()
     ax = sns.displot(x=penguin_df[feature_name], hue= penguin_df['species'])
     plt.axvline(user_input_feature)
-    plt.title(feature_name.title() ' by Species')
+    plt.title((feature_name.title() + ' by Species'))
     return st.pyplot(ax)
 
 plot_features('bill_length_mm', bill_length)
