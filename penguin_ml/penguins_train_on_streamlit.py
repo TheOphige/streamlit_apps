@@ -107,13 +107,15 @@ prediction_species = unique_penguin_mapping[new_prediction][0]
 
 # display prediction
 st.subheader("Predicting Your Penguin's Species:")
-st.write('The user inputs are {}'.format([island, sex, bill_length, 
+
+st.write('- Your inputs are {} '.format([island, sex, bill_length, 
                                           bill_depth, flipper_length, 
                                           body_mass]))
 
-st.write('We predict your penguin is of the {} species'.format(
+st.write('- We predict your penguin is of the {} species'.format(
     prediction_species))
-st.write('We used a machine learning (Random Forest) model to '
+
+st.write('- We used a machine learning (Random Forest) model to '
          'predict the species, the features used in this prediction'
          ' are ranked by relative importance below.')
 
