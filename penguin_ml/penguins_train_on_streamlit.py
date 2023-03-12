@@ -14,7 +14,7 @@ st.write("This app uses 6 inputs to predict the species of penguin using "
          "a model built on the Palmer's Penguin's dataset. "
          "Use the form below to get started!")
 
-
+# instantiate general used variable as None
 penguin_df= None
 unique_penguin_mapping = None
 
@@ -131,20 +131,31 @@ if penguin_df is None:
     penguin_df = pd.read_csv('penguins.csv')
     penguin_df.dropna(inplace=True)
 
-fig, ax = plt.subplots()
-ax = sns.displot(x=penguin_df['bill_length_mm'], hue= penguin_df['species'])
-plt.axvline(bill_length)
-plt.title('Bill Length by Species')
-st.pyplot(ax)
+def plot_features(feature_name, user_input_feature):
+    fig, ax = plt.subplots()
+    ax = sns.displot(x=penguin_df[feature_name], hue= penguin_df['species'])
+    plt.axvline(user_input_feature)
+    plt.title(feature_name.title() ' by Species')
+    return st.pyplot(ax)
 
-fig, ax = plt.subplots()
-ax = sns.displot(x=penguin_df['bill_depth_mm'], hue= penguin_df['species'])
-plt.axvline(bill_depth)
-plt.title('Bill Depth by Species')
-st.pyplot(ax)
+plot_features('bill_length_mm', bill_length)
+plot_features('bill_depth_mm', bill_depth)
+plot_features('flipper_length_mm', flipper_length)
 
-fig, ax = plt.subplots()
-ax = sns.displot(x=penguin_df['flipper_length_mm'], hue= penguin_df['species'])
-plt.axvline(flipper_length)
-plt.title('Flipper Length by Species')
-st.pyplot(ax)
+# fig, ax = plt.subplots()
+#     ax = sns.displot(x=penguin_df['bill_length_mm'], hue= penguin_df['species'])
+#     plt.axvline(bill_length)
+#     plt.title('Bill Length by Species')
+#     st.pyplot(ax)
+
+# fig, ax = plt.subplots()
+# ax = sns.displot(x=penguin_df['bill_depth_mm'], hue= penguin_df['species'])
+# plt.axvline(bill_depth)
+# plt.title('Bill Depth by Species')
+# st.pyplot(ax)
+
+# fig, ax = plt.subplots()
+# ax = sns.displot(x=penguin_df['flipper_length_mm'], hue= penguin_df['species'])
+# plt.axvline(flipper_length)
+# plt.title('Flipper Length by Species')
+# st.pyplot(ax)
