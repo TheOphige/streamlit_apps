@@ -102,6 +102,7 @@ elif sex == 'Male':
 
 # making sure nothing happens until user input is given
 if [island, sex, bill_length, bill_depth, flipper_length, body_mass] == ['Biscoe', 'Female', 0, 0, 0, 0]:
+    st.write('Please tweak the inputs.')
     st.stop()
 
 else:
