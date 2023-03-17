@@ -100,70 +100,75 @@ if sex == 'Female':
 elif sex == 'Male':
     sex_male = 1
 
-# making predictions
-new_prediction = rfc.predict([[bill_length, bill_depth, flipper_length,
-                               body_mass, island_biscoe, island_dream,
-                               island_torgerson, sex_female, sex_male]])
+# making sure nothing happens until user input is given
+if [island, sex, bill_length, bill_depth, flipper_length, body_mass] == ['Biscoe', 'Female', 0, 0, 0, 0]:
+    st.stop()
 
-#mapping prediction to its species
-if unique_penguin_mapping is None:
-    unique_penguin_mapping = uniques
+else:
+    # making predictions
+    new_prediction = rfc.predict([[bill_length, bill_depth, flipper_length,
+                                body_mass, island_biscoe, island_dream,
+                                island_torgerson, sex_female, sex_male]])
 
-prediction_species = unique_penguin_mapping[new_prediction][0]
+    #mapping prediction to its species
+    if unique_penguin_mapping is None:
+        unique_penguin_mapping = uniques
 
-# display prediction
-st.subheader("Predicting Your Penguin's Species:")
+    prediction_species = unique_penguin_mapping[new_prediction][0]
 
-st.write('- Your inputs are {} '.format([island, sex, bill_length, 
-                                          bill_depth, flipper_length, 
-                                          body_mass]))
+    # display prediction
+    st.subheader("Predicting Your Penguin's Species:")
 
-st.write('- We predict your penguin is of the {} species'.format(
-    prediction_species))
+    st.write('- Your inputs are {} '.format([island, sex, bill_length, 
+                                            bill_depth, flipper_length, 
+                                            body_mass]))
 
-st.write('- We used a machine learning (Random Forest) model to '
-         'predict the species, the features used in this prediction'
-         ' are ranked by relative importance below.')
+    st.write('- We predict your penguin is of the {} species'.format(
+        prediction_species))
 
-# model understanding with visualizations
+    st.write('- We used a machine learning (Random Forest) model to '
+            'predict the species, the features used in this prediction'
+            ' are ranked by relative importance below.')
 
-# random forest feature importance graph
-st.image('penguin_ml/feature_importance.png')
+    # model understanding with visualizations
 
-# Histogram plots of each feature and line plot of user input
-st.write('Below are the histograms for each continuous variable'
-         ' seperated by penguin species. The vertical line represents '
-         'your inputted value.')
+    # random forest feature importance graph
+    st.image('penguin_ml/feature_importance.png')
 
-if penguin_df is None:
-    penguin_df = pd.read_csv('penguin_ml/penguins.csv')
-    penguin_df.dropna(inplace=True)
+    # Histogram plots of each feature and line plot of user input
+    st.write('Below are the histograms for each continuous variable'
+            ' seperated by penguin species. The vertical line represents '
+            'your inputted value.')
 
-def plot_features(feature_name, user_input_feature):
-    fig, ax = plt.subplots()
-    ax = sns.displot(x=penguin_df[feature_name], hue= penguin_df['species'])
-    plt.axvline(user_input_feature)
-    plt.title((feature_name.title() + ' by Species'))
-    return st.pyplot(ax)
+    if penguin_df is None:
+        penguin_df = pd.read_csv('penguin_ml/penguins.csv')
+        penguin_df.dropna(inplace=True)
 
-plot_features('bill_length_mm', bill_length)
-plot_features('bill_depth_mm', bill_depth)
-plot_features('flipper_length_mm', flipper_length)
+    def plot_features(feature_name, user_input_feature):
+        fig, ax = plt.subplots()
+        ax = sns.displot(x=penguin_df[feature_name], hue= penguin_df['species'])
+        plt.axvline(user_input_feature)
+        plt.title((feature_name.title() + ' by Species'))
+        return st.pyplot(ax)
 
-# fig, ax = plt.subplots()
-#     ax = sns.displot(x=penguin_df['bill_length_mm'], hue= penguin_df['species'])
-#     plt.axvline(bill_length)
-#     plt.title('Bill Length by Species')
-#     st.pyplot(ax)
+    plot_features('bill_length_mm', bill_length)
+    plot_features('bill_depth_mm', bill_depth)
+    plot_features('flipper_length_mm', flipper_length)
 
-# fig, ax = plt.subplots()
-# ax = sns.displot(x=penguin_df['bill_depth_mm'], hue= penguin_df['species'])
-# plt.axvline(bill_depth)
-# plt.title('Bill Depth by Species')
-# st.pyplot(ax)
+    # fig, ax = plt.subplots()
+    #     ax = sns.displot(x=penguin_df['bill_length_mm'], hue= penguin_df['species'])
+    #     plt.axvline(bill_length)
+    #     plt.title('Bill Length by Species')
+    #     st.pyplot(ax)
 
-# fig, ax = plt.subplots()
-# ax = sns.displot(x=penguin_df['flipper_length_mm'], hue= penguin_df['species'])
-# plt.axvline(flipper_length)
-# plt.title('Flipper Length by Species')
-# st.pyplot(ax)
+    # fig, ax = plt.subplots()
+    # ax = sns.displot(x=penguin_df['bill_depth_mm'], hue= penguin_df['species'])
+    # plt.axvline(bill_depth)
+    # plt.title('Bill Depth by Species')
+    # st.pyplot(ax)
+
+    # fig, ax = plt.subplots()
+    # ax = sns.displot(x=penguin_df['flipper_length_mm'], hue= penguin_df['species'])
+    # plt.axvline(flipper_length)
+    # plt.title('Flipper Length by Species')
+    # st.pyplot(ax)
