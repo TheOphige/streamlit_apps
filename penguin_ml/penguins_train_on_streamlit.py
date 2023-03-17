@@ -19,10 +19,7 @@ password_guess = st.text_input('What is the Password?')
 if password_guess == '':
     st.stop()
 
-elif password_guess == st.secrets["password"]:
-    pass
-
-else:
+elif password_guess != st.secrets["password"]:
     st.write('Your password is not Nkereke so no Townhall for you.')
     st.stop()
 
