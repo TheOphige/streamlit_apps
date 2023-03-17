@@ -122,7 +122,7 @@ st.write('- We used a machine learning (Random Forest) model to '
 # model understanding with visualizations
 
 # random forest feature importance graph
-st.image('feature_importance.png')
+st.image('penguin_ml/feature_importance.png')
 
 # Histogram plots of each feature and line plot of user input
 st.write('Below are the histograms for each continuous variable'
@@ -130,7 +130,7 @@ st.write('Below are the histograms for each continuous variable'
          'your inputted value.')
 
 if penguin_df is None:
-    penguin_df = pd.read_csv('penguins.csv')
+    penguin_df = pd.read_csv('penguin_ml/penguins.csv')
     penguin_df.dropna(inplace=True)
 
 def plot_features(feature_name, user_input_feature):
