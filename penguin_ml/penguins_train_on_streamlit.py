@@ -9,7 +9,7 @@ from sklearn.model_selection import train_test_split
 import pickle
 
 # title and instructions
-st.title('Penguin Classifier')
+st.title('Penguin Classifier: A Machine Learning App')
 st.write("This app uses 6 inputs to predict the species of penguin using "
          "a model built on the Palmer's Penguin's dataset. "
          "Use the form below to get started!")
@@ -24,8 +24,8 @@ penguin_file = st.file_uploader('Upload your own penguin data')
 # handle no file upload
 if penguin_file is None:
     # use the already build model
-    rf_pickle = open('random_forest_penguin.pickle', 'rb')
-    map_pickle = open('output_penguin.pickle', 'rb')
+    rf_pickle = open('penguin_ml/random_forest_penguin.pickle', 'rb')
+    map_pickle = open('penguin_ml/output_penguin.pickle', 'rb')
 
     rfc = pickle.load(rf_pickle)
     unique_penguin_mapping = pickle.load(map_pickle)
