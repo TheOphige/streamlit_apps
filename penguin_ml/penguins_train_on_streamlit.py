@@ -16,11 +16,12 @@ st.write("This app uses 6 inputs to predict the species of penguin using "
 
 # password the file
 password_guess = st.text_input('What is the Password?')
-if password_guess == '':
+
+if password_guess != '' or st.secrets["password"]:
+    st.write('Your password is not Nkereke so no Townhall for you.')
     st.stop()
 
-elif password_guess != '' or st.secrets["password"]:
-    st.write('Your password is not Nkereke so no Townhall for you.')
+elif password_guess == '':
     st.stop()
 
 # instantiate general used variable as None
