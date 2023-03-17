@@ -36,7 +36,7 @@ else:
     # read data, clean it and train model
 
     # read data 
-    penguin_df = pd.read_csv('penguins.csv')
+    penguin_df = pd.read_csv(penguin_file)
     penguin_df.dropna(inplace=True)
     output = penguin_df['species']
     features = penguin_df[['island', 'bill_length_mm', 'bill_depth_mm',
