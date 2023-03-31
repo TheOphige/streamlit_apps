@@ -7,6 +7,19 @@ from sklearn.metrics import accuracy_score
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import train_test_split
 import pickle
+from streamlit_lottie import st_lottie
+import requests
+
+# add penguin animation
+def load_lottieurl(url: str):
+    r = requests.get(url)
+    if r.status_code != 200:
+        return None
+    return r.json()
+
+lottie_penguin = load_lottieurl('https://assets1.lottiefiles.com/private_files/lf30_lntyk83o.json')
+st_lottie(lottie_penguin, height= 200)
+
 
 # title and instructions
 st.title('Penguin Classifier: A Machine Learning App')
