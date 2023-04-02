@@ -18,7 +18,7 @@ def load_lottieurl(url: str):
     return r.json()
 
 lottie_penguin = load_lottieurl('https://assets1.lottiefiles.com/private_files/lf30_lntyk83o.json')
-st_lottie(lottie_penguin, speed= 1.5, width= 800, height= 400)
+st_lottie(lottie_penguin, speed= 1.5, width= 400, height= 200)
 
 
 # title and instructions
