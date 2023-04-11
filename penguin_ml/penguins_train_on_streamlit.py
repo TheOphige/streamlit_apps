@@ -9,6 +9,8 @@ from sklearn.model_selection import train_test_split
 import pickle
 from streamlit_lottie import st_lottie
 import requests
+from pandas_profiling import ProfileReport
+from streamlit_pandas_profiling import st_profile_report
 
 # add penguin animation
 def load_lottieurl(url: str):
@@ -189,3 +191,8 @@ else:
     # plt.axvline(flipper_length)
     # plt.title('Flipper Length by Species')
     # st.pyplot(ax)
+
+
+    st.title('Pandas Profiling of Penguin Dataset')
+    penguin_profile = ProfileReport(penguin_df, explorative= True)
+    st_profile_report(penguin_profile)
