@@ -1,18 +1,21 @@
 import streamlit as st
 import pandas as pd
+
 # import numpy as np
 # import plotly.express as px
 # import matplotlib.pyplot as plt
 # import seaborn as sns
 # import datetime as dt
-#from bokeh.plotting import figure
+# from bokeh.plotting import figure
 # import altair as alt
 import pydeck as pdk
 
-st.title('SF Trees')
-st.write('This app analyses trees in San Francisco using'
-' a dataset kindly provided by SF DPW')
-trees_df = pd.read_csv('trees.csv')
+st.title("SF Trees")
+st.write(
+    "This app analyses trees in San Francisco using"
+    " a dataset kindly provided by SF DPW"
+)
+trees_df = pd.read_csv("trees.csv")
 # df_dbh_grouped= pd.DataFrame(trees_df.groupby(['dbh']).count()['tree_id'])
 # df_dbh_grouped.columns = ['tree_count']
 # st.write(df_dbh_grouped.head())
@@ -64,13 +67,8 @@ trees_df = pd.read_csv('trees.csv')
 # fig = alt.Chart(trees_df).mark_bar().encode(x= 'caretaker', y= 'count(*):Q')
 # st.altair_chart(fig)
 
-trees_df.dropna(how='any', inplace=True)
-sf_initial_view = pdk.ViewState(
-    latitude=37.77,
-    longitude=-122.4,
-    zoom= 11,
-    pitch=30
-)
+trees_df.dropna(how="any", inplace=True)
+sf_initial_view = pdk.ViewState(latitude=37.77, longitude=-122.4, zoom=11, pitch=30)
 # sp_layer = pdk.Layer(
 #     'Scatterplot',
 #     data=trees_df,
@@ -78,13 +76,16 @@ sf_initial_view = pdk.ViewState(
 #     get_radius=30
 # )
 hx_layer = pdk.Layer(
-    'HexagonLayer',
+    "HexagonLayer",
     data=trees_df,
-    get_position= ['longitude', 'latitude'],
+    get_position=["longitude", "latitude"],
     get_radius=100,
-    extruded=True
+    extruded=True,
 )
-st.pydeck_chart(pdk.Deck(
-    map_style='mapbox://styles/mapbox/light-v9',
-    initial_view_state=sf_initial_view, 
-    layers= [hx_layer]))
+st.pydeck_chart(
+    pdk.Deck(
+        map_style="mapbox://styles/mapbox/light-v9",
+        initial_view_state=sf_initial_view,
+        layers=[hx_layer],
+    )
+)
